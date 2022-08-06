@@ -1,0 +1,14 @@
+#notes-list-display-area {
+    width: 50%;
+    min-height: 2em;
+    min-width:fit-content;
+    background-color: aquamarine;
+}
+#note-input-area {
+    width: 50%;
+    min-width:fit-content;
+    background-color: cadetblue;
+}
+h1 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}

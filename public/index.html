@@ -1,13 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notes App</title>
+    <script src="./assets/index.js" defer></script>
+    <link rel="stylesheet" href="./assets/index.css"></link>
 </head>
+
 <body>
     <h1>This is the Home Page</h1>
-    <a href="http://localhost:8080/api/notes">Go To Notes File</a>
+    <!-- <a href="http://localhost:8080/api/notes">Go To Notes File</a> -->
+    <div id="notes-list-display-area">
+        Notes List
+        <ul id="notes-list">
+        </ul>
+    </div>
+    <div id="note-input-area">
+        <input id="new-note-input" type="text" placeholder="Write Note Here">
+        <button id="add-note-btn">Add Note</button>
+    </div>
+
 </body>
+
 </html>
