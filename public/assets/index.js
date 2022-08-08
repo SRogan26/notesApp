@@ -5,23 +5,47 @@ const addNoteBtn = document.getElementById("add-note-btn");
 const notesList = document.getElementById("notes-list");
 
 //renders a list item to represent a note record
-const renderNotesFileData = (record) => {
+const renderNotesFileData = (record, selectedNoteId) => {
     const newNoteElement = document.createElement('li');
     newNoteElement.setAttribute('id', record.id);
     const newCheckBox = document.createElement('input');
     newCheckBox.setAttribute('id', record.id);
     newCheckBox.setAttribute('type', 'checkbox');
     newCheckBox.checked = record.isDone;
-    newCheckBox.addEventListener('click', async ()=> {
+    newCheckBox.addEventListener('click', async () => {
         await updateNoteStatus(newCheckBox);
     })
-    newNoteElement.appendChild(newCheckBox);
     const newNoteText = document.createElement('span');
     newNoteText.setAttribute('id', record.id);
     newNoteText.innerText = record.noteBody;
-    newNoteElement.appendChild(newNoteText);
-    notesList.appendChild(newNoteElement);
+    if (record.id === selectedNoteId) {
+        newNoteText.classList.add('selected-note');
+        const deleteBtn = document.createElement('button');
+        deleteBtn.addEventListener('click', async () => {
+            await deleteSelectedNote();
+            while (notesList.firstChild) notesList.removeChild(notesList.lastChild);
+            await loadNotesFile(selectedNoteId);
+        });
+        deleteBtn.textContent = 'X';
+        deleteBtn.classList.add('deleteBtn');
+        newNoteText.appendChild(deleteBtn);
+    }
+    newNoteElement.prepend(newNoteText);
+    newNoteElement.prepend(newCheckBox);
+    notesList.append(newNoteElement);
 }
+//click listener for selecting an element
+notesList.addEventListener('click', async (e) => {
+    let selectedNoteId = '';
+    const clickedElementTag = e.target.tagName.toLowerCase();
+    const clickedElementParentTag = e.target.parentNode.tagName.toLowerCase();
+    if (clickedElementTag === 'li' || clickedElementParentTag === 'li') {
+        selectedNoteId = e.target.id
+        while (notesList.firstChild) notesList.removeChild(notesList.lastChild);
+        await loadNotesFile(selectedNoteId);
+    }
+
+})
 //Generates Post request for new note
 const submitNewNote = async () => {
     const reqOptions = {
@@ -51,19 +75,33 @@ const updateNoteStatus = async (noteClicked) => {
         .then(res => res.json())
         .then(json => console.log(json));
 }
+const deleteSelectedNote = async () => {
+    const elementToDelete = document.querySelector('.selected-note');
+    const reqOptions = {
+        method: 'DELETE',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ "id": elementToDelete.id })
+    }
+    fetch(apiUrl, reqOptions)
+        .then(res => res.json())
+        .then(json => console.log(json));
+}
 //submit new note and re-render list on Add Note button click
 addNoteBtn.addEventListener('click', async () => {
     if (!newNoteInput.value) return;
     while (notesList.firstChild) notesList.removeChild(notesList.lastChild);
     await submitNewNote();
-    await loadNotesFile()
+    await loadNotesFile();
+    newNoteInput.value = null;
 })
 //load from notes file
-const loadNotesFile = async () => {
+const loadNotesFile = async (selectedNoteId) => {
     fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
-            data.forEach(record => renderNotesFileData(record));
+            data.forEach(record => renderNotesFileData(record, selectedNoteId));
         })
         .catch(err => console.log(err))
 }

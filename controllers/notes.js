@@ -36,9 +36,17 @@ const toggleNoteStatus = (note) => {
     const stringifiedNotes = JSON.stringify(parsedNoteData);
     fs.writeFileSync(notesPath, stringifiedNotes);
 }
+
+const removeNoteRecord = (idToDelete) => {
+    const parsedNoteData = getAllNotes();
+    const updatedNoteData = parsedNoteData.filter(record => record.id != idToDelete);
+    const stringifiedNotes = JSON.stringify(updatedNoteData);
+    fs.writeFileSync(notesPath, stringifiedNotes);
+}
 module.exports =
 {
     getAllNotes,
     addNewNote,
-    toggleNoteStatus
+    toggleNoteStatus,
+    removeNoteRecord
 };

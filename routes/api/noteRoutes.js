@@ -4,7 +4,8 @@ const fs = require('fs');
 const {
     getAllNotes,
     addNewNote,
-    toggleNoteStatus
+    toggleNoteStatus,
+    removeNoteRecord
 } = require('../../controllers/notes.js');
 const notesFile = '../../notes.json'
 
@@ -23,4 +24,8 @@ router.put("/", (req, res) => {
     res.status(200).json('record updated');
 });
 
+router.delete("/", (req, res) => {
+    removeNoteRecord(req.body.id);
+    res.status(200).json('record removed');
+});
 module.exports = router;
