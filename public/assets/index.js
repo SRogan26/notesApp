@@ -3,6 +3,7 @@ const noteListArea = document.getElementById('notes-list-display-area');
 const newNoteInput = document.getElementById("new-note-input");
 const addNoteBtn = document.getElementById("add-note-btn");
 const notesList = document.getElementById("notes-list");
+const rightDisplayArea = document.getElementById("right-display-area");
 
 //renders a list item to represent a note record
 const renderNotesFileData = (record, selectedNoteId) => {
@@ -25,6 +26,7 @@ const renderNotesFileData = (record, selectedNoteId) => {
             await deleteSelectedNote();
             while (notesList.firstChild) notesList.removeChild(notesList.lastChild);
             await loadNotesFile(selectedNoteId);
+            rightDisplayArea.style.display = "none";
         });
         deleteBtn.textContent = 'X';
         deleteBtn.classList.add('deleteBtn');
@@ -43,8 +45,8 @@ notesList.addEventListener('click', async (e) => {
         selectedNoteId = e.target.id
         while (notesList.firstChild) notesList.removeChild(notesList.lastChild);
         await loadNotesFile(selectedNoteId);
+        rightDisplayArea.style.display = "block";
     }
-
 })
 //Generates Post request for new note
 const submitNewNote = async () => {
@@ -91,9 +93,11 @@ const deleteSelectedNote = async () => {
 //submit new note and re-render list on Add Note button click
 addNoteBtn.addEventListener('click', async () => {
     if (!newNoteInput.value) return;
+    const selectedElement = document.querySelector('.selected-note');
     while (notesList.firstChild) notesList.removeChild(notesList.lastChild);
     await submitNewNote();
-    await loadNotesFile();
+    if (!selectedElement) await loadNotesFile();
+    else await loadNotesFile(selectedElement.id);
     newNoteInput.value = null;
 })
 //load from notes file

@@ -1,22 +1,73 @@
+body{
+    background-color:dimgrey;
+}
+.app-container{
+    display:flex;
+    justify-content: space-between;
+    margin:10px;
+}
+#left-display-area{
+    min-width: 40%;
+}
 #notes-list-display-area {
-    width: 50%;
+    width: 100%;
     min-height: 2em;
     min-width:fit-content;
     background-color: aquamarine;
+    font-size: 2em;  
+    padding: 2px;
 }
 #note-input-area {
-    width: 50%;
+    height: 2.5em;
+    width: 100%;
     min-width:fit-content;
+    min-height: fit-content;
     background-color: cadetblue;
+    display:flex;
+    justify-content: space-around;
+    padding: 2px;
+}
+#right-display-area{
+    min-width: 40%;
+}
+#task-list-display-area {
+    width: 100%;
+    height: 100%;
+    min-height: 2em;
+    min-width:fit-content;
+    background-color: orange;
+    font-size: 2em;  
+    padding: 2px;
+}
+#task-input-area {
+    height: 2.5em;
+    width: 100%;
+    min-width:100%;
+    min-height: fit-content;
+    background-color: blue;
+    display:flex;
+    justify-content: space-around;
+    padding: 2px;
 }
 h1 {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: cornsilk;
+    font-size: 3em;
 }
 .selected-note{
-    text-transform: uppercase;
     font-weight: bold;
+    background-color: cyan;
 }
 .deleteBtn{
     background-color: red;
     font-weight: bolder;
+    font-size: .75em;
+    margin-right: 5px;
+}
+li:hover{
+    cursor: pointer;
+    color: rgb(241, 60, 214);
+}
+button:hover{
+   cursor:grabbing; 
 }
