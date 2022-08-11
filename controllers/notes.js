@@ -4,7 +4,12 @@ const notesFile = '../notes.json';
 const notesPath = path.join(__dirname, notesFile)
 
 //Note constructor
-function Note(noteBody){
+function Note(noteBody) {
+    this.id = Date.now().toString();
+    this.noteBody = noteBody;
+    this.taskList = [];
+}
+function Task(noteBody) {
     this.id = Date.now().toString();
     this.noteBody = noteBody;
     this.isDone = false;
@@ -28,10 +33,14 @@ const addNewNote = (note) => {
     fs.writeFileSync(notesPath, stringifiedNotes);
 }
 
-const toggleNoteStatus = (note) => {
+const updateTaskStatus = (reqBody) => {
     const parsedNoteData = getAllNotes();
     parsedNoteData.forEach(record => {
-        if(record.id === note.id) record.isDone = note.isDone;
+        if (record.id === reqBody.selectedId) {
+            record.taskList = reqBody.taskList;
+            if (reqBody.newTaskBody) record.taskList.push(new Task(reqBody.newTaskBody));
+            if (reqBody.deleteId) record.taskList = record.taskList.filter(task => task.id != reqBody.deleteId);
+        }
     });
     const stringifiedNotes = JSON.stringify(parsedNoteData);
     fs.writeFileSync(notesPath, stringifiedNotes);
@@ -47,6 +56,6 @@ module.exports =
 {
     getAllNotes,
     addNewNote,
-    toggleNoteStatus,
+    updateTaskStatus,
     removeNoteRecord
 };
