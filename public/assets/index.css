@@ -1,28 +1,52 @@
-*{
-    margin:0;
+* {
+    margin: 0;
 }
-body{
-    background-color:rgb(43, 47, 43);
+
+body {
+    /* background-color:rgb(43, 47, 43); */
+    background: linear-gradient(270deg, rgb(21, 28, 57) 0%, rgba(20, 20, 20, 0.844) 25%, rgba(13, 0, 16, 0.844) 50%, rgb(21, 28, 57) 75%, rgba(20, 20, 20, 0.844) 100%);
+    background-size: 400% 400%;
+    animation-name: gradient;
+    animation-duration: 50s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-timing-function: linear;
     display: grid;
     gap: 1rem;
-    grid-template-areas: 
-    "title title title title"
-    "..... left  right ....."
-    "..... ....  right .....";
+    grid-template-areas:
+        "title title title title"
+        "..... left  right ....."
+        "..... ....  right .....";
     grid-template-columns: 1fr minmax(150px, 35%) minmax(300px, 55%) 1fr;
 }
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    50% {
+        background-position: 50% 50%;
+    }
+
+    100% {
+        background-position: 100% 100%;
+    }
+}
+
 @media (max-width: 900px) {
-    body{
+    body {
         display: grid;
         gap: 1rem;
-        grid-template-areas: 
-        "title title title"
-        "..... left  ....."
-        "..... right .....";
+        grid-template-areas:
+            "title title title"
+            "..... left  ....."
+            "..... right .....";
         grid-template-columns: 1fr minmax(300px, 90%) 1fr;
     }
 }
-input[type=text]{
+
+input[type=text] {
     border: none;
     background: none;
     border-bottom: solid 3px;
@@ -31,23 +55,26 @@ input[type=text]{
     font-family: inherit;
     min-width: 40%;
 }
-input[type=checkbox]{
+
+input[type=checkbox] {
     margin-right: 1.5rem;
 }
+
 .list-container {
     width: 100%;
     min-height: 100%;
-    min-width:100%;
+    min-width: 100%;
     font-family: sans-serif;
-    font-size: calc(1rem + 1vw);  
+    font-size: calc(1rem + 1vw);
     border-radius: 15px;
-    display:flex;
+    display: flex;
     flex-direction: column;
     justify-content: space-between;
     color: white;
     padding-bottom: 5px;
     padding-left: 5px;
 }
+
 .input-container {
     height: 2.5rem;
     min-height: fit-content;
@@ -56,6 +83,7 @@ input[type=checkbox]{
     padding-left: 10px;
     padding-right: 10px;
 }
+
 .page-title {
     grid-area: title;
     background-color: rgba(0, 0, 0, 0.191);
@@ -66,37 +94,53 @@ input[type=checkbox]{
     font-weight: 900;
     letter-spacing: 16px;
 }
-.list-title{
+
+.list-title {
     width: 100%;
     font-size: calc(1rem + 3vw);
     font-weight: bold;
     letter-spacing: 2px;
     color: rgba(245, 245, 245, 0.572);
 }
-.selected-note{
+
+.selected-note {
     font-weight: bold;
     font-style: italic;
 }
-.selected-task{
+
+.selected-task {
     font-weight: bold;
     font-style: italic;
-    background-color: rgba(14, 127, 226, 0.377);
+    letter-spacing: 2px;
+    background-color:rgba(60, 208, 241, 0.236);
+    border-radius: 5px;
     padding-left: 3px;
     padding-right: 5px;
+    animation: selected 2s linear 0s infinite alternate;
 }
-.deleteBtn{
-    background-color: rgba(255, 238, 0, 0.321);
+@keyframes selected {
+    0% {background-color: rgba(60, 208, 241, 0.4);}
+    20%{background-color: rgba(232, 241, 60, 0.4);}
+    40%{background-color: rgba(241, 60, 78, 0.4);}
+    60%{background-color: rgba(90, 241, 60, 0.4);}
+    80%{background-color: rgba(193, 60, 241, 0.4);}
+    100%{background-color: rgba(241, 166, 60, 0.4)}
+}
+
+.deleteBtn {
+    background-color: rgba(255, 173, 21, 0.739);
     font-weight: 900;
     font-size: calc(.75rem + 1vw);
     margin-left: 10px;
     margin-right: 5px;
     border: none;
     border-radius: 12px;
-    color: rgba(255, 0, 0, 0.68);
+    color: rgba(179, 0, 0, 0.836);
     min-width: fit-content;
 }
-.submitBtn{
-    min-width: fit-content; 
+
+.submitBtn {
+    min-width: fit-content;
     font-size: 1rem;
     border: dashed 3px rgba(49, 245, 35, 0.609);
     border-radius: 20px;
@@ -105,36 +149,38 @@ input[type=checkbox]{
     font-weight: bolder;
     letter-spacing: 3px;
 }
-li:hover{
+
+li:hover {
     cursor: pointer;
     color: rgb(241, 60, 214);
 }
-button:hover{
-   cursor:grabbing; 
+
+button:hover {
+    cursor: grabbing;
 }
-#left-display-area{
-    grid-area: left;   
+
+#left-display-area {
+    grid-area: left;
 }
-#right-display-area{
+
+#right-display-area {
     grid-area: right;
     min-height: 100%;
 }
+
 #task-list-display-area {
-    background-color: rgba(20, 7, 197, 0.206);
+    background-color: rgba(20, 7, 197, 0.565);
 }
-#task-list{
+
+#task-list {
     min-height: 200px;
     list-style-type: none;
-    background-color: rgba(246, 242, 116, 0.204);
+    background-color: rgba(88, 88, 76, 0.667);
     margin-right: 5px;
     margin-bottom: 5px;
     padding-top: 5px;
 }
-#notes-list{
-    min-height:100px;
+
+#notes-list {
+    min-height: 100px;
 }
-
-
-
-
-
