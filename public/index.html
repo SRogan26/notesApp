@@ -14,30 +14,29 @@
 </head>
 
 <body>
-    <h1>This is the Home Page</h1>
+    <h1 class="page-title">What To Do?</h1>
     <!-- <a href="http://localhost:8080/api/notes">Go To Notes File</a> -->
-    <div class="app-container">
-    <div id="left-display-area">
-        <div id="notes-list-display-area">
-            <div>Notes List</div>
+    <div id="left-display-area" >
+        <div id="notes-list-display-area" class="list-container">
+            <div class="list-title">Notes List</div>
             <ul id="notes-list"></ul>
-        </div>
-        <div id="note-input-area">
-            <input id="new-note-input" type="text" placeholder="Write Note Here" style="width: 40%;"/>
-            <button id="add-note-btn" style="width: 30%; font-size: 1em;">Add Note</button>
+            <div id="note-input-area" class="input-container">
+                <input id="new-note-input" type="text" placeholder="Write Note Here" />
+                <button id="add-note-btn" class="submitBtn">Add Note</button>
+            </div>
         </div>
     </div>
     <div id="right-display-area" style="display: none;">
-        <div id="task-list-display-area">
-            <div>Task List</div>
+        <div id="task-list-display-area" class="list-container" >
+            <div class="list-title">Task List</div>
             <ul id="task-list"></ul>
-        </div>
-        <div id="task-input-area">
-            <input id="new-task-input" type="text" placeholder="Write Task Here" style="width: 40%;">
-            <button id="add-task-btn" style="width: 30%; font-size: 1em;">Add Task</button>
+            <div id="task-input-area" class="input-container">
+                <input id="new-task-input" type="text" placeholder="Write Task Here" />
+                <button id="add-task-btn" class="submitBtn">Add Task</button>
+            </div>
         </div>
     </div>
-</div>
+
 
 </body>
 

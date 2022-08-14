@@ -1,77 +1,109 @@
+*{
+    margin:0;
+}
 body{
-    background-color:dimgrey;
+    background-color:rgb(43, 47, 43);
+    display: grid;
+    gap: 1rem;
+    grid-template-areas: 
+    "title title title title"
+    "..... left  right ....."
+    "..... ....  right .....";
+    grid-template-columns: 1fr minmax(150px, 35%) minmax(300px, 55%) 1fr;
 }
-.app-container{
-    display:flex;
-    justify-content: space-between;
-    margin:10px;
+@media (max-width: 900px) {
+    body{
+        display: grid;
+        gap: 1rem;
+        grid-template-areas: 
+        "title title title"
+        "..... left  ....."
+        "..... right .....";
+        grid-template-columns: 1fr minmax(300px, 90%) 1fr;
+    }
 }
-#left-display-area{
-    min-width: 50%;
-    background-color: crimson;
-    border-radius: 5px;
-    padding: 5px 5px 5px 5px;
-}
-#notes-list-display-area {
-    width: 100%;
-    min-height: 2em;
-    min-width:fit-content;
-    background-color: aquamarine;
-    font-size: 2em;  
-    margin-right: 2px;
-    border-radius: 15px;
-}
-#note-input-area {
-    height: 2.5em;
-    width: 100%;
-    min-width:fit-content;
-    min-height: fit-content;
-    background-color: cadetblue;
-    display:flex;
-    justify-content: space-around;
-    margin-right: 2px;
-    border-radius: 15px;
-}
-#right-display-area{
+input[type=text]{
+    border: none;
+    background: none;
+    border-bottom: solid 3px;
+    color: inherit;
+    font-size: 1.25rem;
+    font-family: inherit;
     min-width: 40%;
 }
-#task-list-display-area {
-    width: 100%;
-    height: 100%;
-    min-height: 2em;
-    min-width:fit-content;
-    background-color: orange;
-    font-size: 2em;  
-    padding: 2px;
+input[type=checkbox]{
+    margin-right: 1.5rem;
 }
-#task-input-area {
-    height: 2.5em;
+.list-container {
     width: 100%;
+    min-height: 100%;
     min-width:100%;
-    min-height: fit-content;
-    background-color: blue;
+    font-family: sans-serif;
+    font-size: calc(1rem + 1vw);  
+    border-radius: 15px;
     display:flex;
-    justify-content: space-around;
-    padding: 2px;
+    flex-direction: column;
+    justify-content: space-between;
+    color: white;
+    padding-bottom: 5px;
+    padding-left: 5px;
 }
-h1 {
+.input-container {
+    height: 2.5rem;
+    min-height: fit-content;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.page-title {
+    grid-area: title;
+    background-color: rgba(0, 0, 0, 0.191);
+    text-align: center;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    color: cornsilk;
-    font-size: 3em;
+    color: rgba(255, 248, 220, 0.2);
+    font-size: calc(1rem + 7vw);
+    font-weight: 900;
+    letter-spacing: 16px;
+}
+.list-title{
+    width: 100%;
+    font-size: calc(1rem + 3vw);
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: rgba(245, 245, 245, 0.572);
 }
 .selected-note{
     font-weight: bold;
-    background-color: cyan;
+    font-style: italic;
 }
 .selected-task{
     font-weight: bold;
-    background-color: rgba(14, 127, 226, 0.792);
+    font-style: italic;
+    background-color: rgba(14, 127, 226, 0.377);
+    padding-left: 3px;
+    padding-right: 5px;
 }
 .deleteBtn{
-    background-color: red;
-    font-weight: bolder;
-    font-size: .75em;
+    background-color: rgba(255, 238, 0, 0.321);
+    font-weight: 900;
+    font-size: calc(.75rem + 1vw);
+    margin-left: 10px;
     margin-right: 5px;
+    border: none;
+    border-radius: 12px;
+    color: rgba(255, 0, 0, 0.68);
+    min-width: fit-content;
+}
+.submitBtn{
+    min-width: fit-content; 
+    font-size: 1rem;
+    border: dashed 3px rgba(49, 245, 35, 0.609);
+    border-radius: 20px;
+    background: none;
+    color: rgba(49, 245, 35, 0.609);
+    font-weight: bolder;
+    letter-spacing: 3px;
 }
 li:hover{
     cursor: pointer;
@@ -80,3 +112,29 @@ li:hover{
 button:hover{
    cursor:grabbing; 
 }
+#left-display-area{
+    grid-area: left;   
+}
+#right-display-area{
+    grid-area: right;
+    min-height: 100%;
+}
+#task-list-display-area {
+    background-color: rgba(20, 7, 197, 0.206);
+}
+#task-list{
+    min-height: 200px;
+    list-style-type: none;
+    background-color: rgba(246, 242, 116, 0.204);
+    margin-right: 5px;
+    margin-bottom: 5px;
+    padding-top: 5px;
+}
+#notes-list{
+    min-height:100px;
+}
+
+
+
+
+
