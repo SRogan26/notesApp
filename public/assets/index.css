@@ -3,13 +3,11 @@
 }
 
 body {
-    /* background-color:rgb(43, 47, 43); */
     background: linear-gradient(270deg, rgb(21, 28, 57) 0%, rgba(20, 20, 20, 0.844) 25%, rgba(13, 0, 16, 0.844) 50%, rgb(21, 28, 57) 75%, rgba(20, 20, 20, 0.844) 100%);
     background-size: 400% 400%;
     animation-name: gradient;
     animation-duration: 50s;
     animation-iteration-count: infinite;
-    animation-direction: normal;
     animation-timing-function: linear;
     display: grid;
     gap: 1rem;
@@ -22,15 +20,15 @@ body {
 
 @keyframes gradient {
     0% {
-        background-position: 0% 0%;
+        background-position: 0%;
     }
 
     50% {
-        background-position: 50% 50%;
+        background-position: 50%;
     }
 
     100% {
-        background-position: 100% 100%;
+        background-position: 100%;
     }
 }
 
