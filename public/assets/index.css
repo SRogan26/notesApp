@@ -57,7 +57,10 @@ input[type=text] {
 input[type=checkbox] {
     margin-right: 1.5rem;
 }
-
+.big-area{
+    border-radius: 10px;
+    box-shadow: 10px 10px 15px rgba(191, 190, 190, 0.515);
+}
 .list-container {
     width: 100%;
     min-height: 100%;
@@ -69,8 +72,8 @@ input[type=checkbox] {
     flex-direction: column;
     justify-content: space-between;
     color: white;
-    padding-bottom: 5px;
-    padding-left: 5px;
+    /* padding-bottom: 5px; */
+    /* padding-left: 5px; */
 }
 
 .input-container {
@@ -99,6 +102,7 @@ input[type=checkbox] {
     font-weight: bold;
     letter-spacing: 2px;
     color: rgba(245, 245, 245, 0.572);
+    padding-left: 5px;
 }
 
 .selected-note {
@@ -128,13 +132,17 @@ input[type=checkbox] {
 .deleteBtn {
     background-color: rgba(255, 173, 21, 0.739);
     font-weight: 900;
-    font-size: calc(.75rem + 1vw);
+    font-size: calc(1rem + .5vw);
+    text-overflow: clip;
     margin-left: 10px;
     margin-right: 5px;
+    margin-bottom: 5px;
+    padding-bottom: 2px;;
     border: none;
     border-radius: 12px;
     color: rgba(179, 0, 0, 0.836);
     min-width: fit-content;
+    box-shadow: 3px 3px 10px rgba(255, 173, 21, 0.368);
 }
 
 .submitBtn {
@@ -146,6 +154,9 @@ input[type=checkbox] {
     color: rgba(49, 245, 35, 0.609);
     font-weight: bolder;
     letter-spacing: 3px;
+    box-shadow: 
+    3px 3px 10px rgba(49, 245, 35, 0.345),
+    inset 0 0 15px rgba(49, 245, 35, 0.345);
 }
 
 li:hover {
